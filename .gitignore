@@ -6,7 +6,7 @@
 
 Cargo.lock
 .DS_Store
-
+*.iml
 # The cache for docker container dependency
 .cargo
 
