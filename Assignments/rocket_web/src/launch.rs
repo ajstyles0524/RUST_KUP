@@ -1,4 +1,5 @@
-use log::info;
+use rocket::info;
+use rocket::*;
 #[get("/world")]
 /// hello is a handler which is used to handling /world route
 ///
@@ -23,6 +24,6 @@ fn hello() -> &'static str {
 /// #Return
 ///
 /// Return Rocket<Build>
-pub fn launch() -> _ {
+pub fn launch() -> Rocket<Build>{
     rocket::build().mount("/api", routes![hello])
 }
