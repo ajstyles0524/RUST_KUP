@@ -42,7 +42,7 @@ fn new_book(book_form: Form<Book>) -> String {
     info!("Create and Update data on server successfully");
     format!("Book added successfully: {:?}", dummy_db)
 }
-/// rocket is a function which creates a hello route,mounts the route at the /api,and launches the application
+/// rocket is a function which creates a book route,mounts the route at the /api,and launches the application
 ///
 /// #Arguments
 ///
