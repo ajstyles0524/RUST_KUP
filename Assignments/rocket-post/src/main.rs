@@ -11,10 +11,10 @@ use crate::form::Form;
 /// author:- author of the book of type String.
 ///
 /// rating:- rating of the book of type i32
-struct Book {
-    title: String,
-    author: String,
-    star: i32
+pub struct Book {
+   pub title: String,
+    pub author: String,
+    pub rating: i32
 }
 /// new_book is a handler which is used to handling /book route
 ///
