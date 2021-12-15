@@ -29,11 +29,14 @@ struct Book {
 fn new_book(book_form: Form<Book>) -> String {
     let book: Book = book_form.into_inner();
     let mut dummy_db: Vec<Book> = Vec::new();
-    let book_1: Book = Book {
+    let mut book_1: Book = Book {
         title: String::from("The End Point"),
         author: String::from("Alex carry"),
-        star: 5
+        rating: 5
     };
+    book_1.title= String::from("Love is blind");
+    book_1.author= String::from("Mathew Cam");
+    book_1.rating= 4;
     dummy_db.push(book_1);
     dummy_db.push(book);
     info!("Create and Update data on server successfully");
