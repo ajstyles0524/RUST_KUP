@@ -24,7 +24,7 @@ async fn index() {
         info!("success!");
         debug!("Status: {}", resp.status());
     } else if resp.status().is_server_error() {
-        info!("server error!");
+        error!("server error!");
         debug!("Something else happened.\n Status: {}", resp.status());
     } else {
         debug!("Something else happened. \n Status: {:?}", resp.status());
