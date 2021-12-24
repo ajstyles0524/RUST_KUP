@@ -1,32 +1,18 @@
-use log::*;
-use serde::{Deserialize, Serialize};
-
-#[derive(Serialize, Deserialize)]
-pub struct Welcome {
-    color: Color,
-    egg_groups: Vec<Color>,
-}
-#[derive(Debug, Serialize, Deserialize)]
-pub struct Color {
-    name: String,
-    url: String,
-}
-/// main: main function is used to get the URL
+use log::info;
+use std::collections::HashMap;
+/// main is a function that can use to get the URL path of the request
 ///
 /// #Arguments
 ///
 /// No Arguments
 ///
-/// Return
+/// #Return
 ///
-/// Return reqwest::Result<()>
-#[tokio::main]
-pub async fn hit() -> Result<(),reqwest::Error>{
+/// Return reqwest::Result<()> type
+pub fn hit_point() -> reqwest::Result<()> {
     env_logger::init();
-    let result = reqwest::get("https://pokeapi.co/api/v2/pokemon-species/ditto")
-        .await?
-        .json::<Welcome>()
-        .await?;
-    info!("{:?}", result.egg_groups[0]);
+    let content = reqwest::blocking::get("https://pokeapi.co/api/v2/pokemon-species/ditto")?
+        .json::<HashMap<String, serde_json::Value>>()?;
+    info!("{:#?}", content["flavor_text_entries"][22].get("flavor_text"));
     Ok(())
 }
