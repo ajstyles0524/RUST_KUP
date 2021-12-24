@@ -1,6 +1,7 @@
-pub mod lib;
-use crate::lib::hit;
+pub  mod lib;
+use crate::lib::hit_point;
 fn main(){
-    hit().ok();
+    hit_point().ok();
 }
+
 
