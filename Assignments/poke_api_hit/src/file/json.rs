@@ -1,6 +1,6 @@
 use log::info;
 use std::collections::HashMap;
-/// main is a function that can use to get the URL path of the request
+/// hit_point is a function that can use to get the URL path of the request
 ///
 /// #Arguments
 ///
