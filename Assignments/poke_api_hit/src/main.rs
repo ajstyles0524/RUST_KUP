@@ -4,5 +4,6 @@ pub mod file {
 }
 use crate::file::json::hit_point;
 fn main() {
-    hit_point().ok();
+    let key = "base_happiness".to_string();
+    hit_point(key).ok();
 }
