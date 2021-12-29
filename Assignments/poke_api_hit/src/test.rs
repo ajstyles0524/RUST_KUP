@@ -1,8 +1,16 @@
 #[cfg(test)]
 mod tests {
+    use crate::hit_point;
     use serde_json::Value::String;
     use std::collections::HashMap;
     use std::string::String as OtherString;
+
+    #[test]
+    fn body_success() {
+        env_logger::init();
+        let key = "base_happiness".to_string();
+        assert_eq!(hit_point(key).unwrap(),70)
+    }
     #[test]
     fn url_success() {
         let url = "https://pokeapi.co/api/v2/pokemon-species/ditto";
@@ -34,6 +42,41 @@ mod tests {
         );
         let content = reqwest::blocking::get("https://pokeapi.co/api/v2/pokemon-species/ditto")
             .unwrap()
+            .json::<HashMap<OtherString, serde_json::Value>>()
+            .unwrap();
+        let resp_2 = &content["flavor_text_entries"][0]["flavor_text"];
+        assert_eq!(*resp_2, resp);
+    }
+    #[test]
+    fn body_third_success() {
+        let resp = String("gold".to_string());
+        let content = reqwest::blocking::get("https://pokeapi.co/api/v2/pokemon-species/ditto")
+            .unwrap()
+            .json::<HashMap<OtherString, serde_json::Value>>()
+            .unwrap();
+        let resp_3 = &content["flavor_text_entries"][3]["version"]["name"];
+        assert_eq!(*resp_3, resp);
+    }
+    #[test]
+    fn body_first_failure() {
+        let content = reqwest::blocking::get("https://pokeapi.co/api/v2/pokemon-species/ditto")
+            .unwrap()
+            .json::<HashMap<OtherString, serde_json::Value>>()
+            .unwrap();
+        let resp_4 = &content["capture_rate"];
+        assert_ne!(*resp_4, 70);
+    }
+    #[test]
+    fn body_second_failure() {
+        let content = reqwest::blocking::get("https://pokeapi.co/api/v2/pokemon-species/ditto")
+            .unwrap()
+            .json::<HashMap<OtherString, serde_json::Value>>()
+            .unwrap();
+        let resp_5 = &content["base_happiness"];
+        assert_ne!(*resp_5, 35);
+    }
+}
+
             .json::<HashMap<OtherString, serde_json::Value>>()
             .unwrap();
         let resp_2 = &content["flavor_text_entries"][0]["flavor_text"];
