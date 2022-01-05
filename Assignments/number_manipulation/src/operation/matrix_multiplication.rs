@@ -31,21 +31,4 @@ impl Matrix {
         info!("Multiplication of two matrix is returned");
         result
     }
-   /* /// print method is used to print result matrix in row-column form
-    ///
-    /// #Arguments
-    ///
-    /// self:- self represents the instance of Matrix structure
-    ///
-    /// #Return
-    ///
-    /// No Return
-    pub fn print(self) {
-        for index_1 in 0..3 {
-            for index_2 in 0..3 {
-                println!("{} ", self.element[index_1][index_2]);
-            }
-            println!(" ");
-        }
-    }*/
 }
