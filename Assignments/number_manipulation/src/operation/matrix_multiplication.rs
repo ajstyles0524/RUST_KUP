@@ -20,7 +20,6 @@ pub fn matrix_multiplication(
     let l_1 = first_matrix.len();
     let l_2 = second_matrix.len();
     for (index_1, _item) in first_matrix.iter().enumerate().take(l_1)  {
-        println!("{}",index_1);
         let mut vec: Vec<i32> = Vec::new();
         for index_2 in 0..second_matrix[0].len() {
             let mut sum = 0;
