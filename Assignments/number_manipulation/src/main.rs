@@ -6,14 +6,13 @@ pub mod operation {
     pub mod neon_number;
     pub mod palindrome;
 }
-use log::*;
-use text_io::read;
 use crate::operation::armstrong::check_armstrong;
 use crate::operation::automorphic::check_automorphic;
-use crate::operation::matrix_multiplication::Matrix;
+use crate::operation::matrix_multiplication::matrix_multiplication;
 use crate::operation::neon_number::check_neon;
 use crate::operation::palindrome::check_palindrome;
-
+use log::*;
+use text_io::read;
 fn main() {
     env_logger::init();
     loop {
@@ -48,14 +47,33 @@ fn main() {
             debug!("{}", check_palindrome(number));
         }
         if choice == 5 {
-            let first = Matrix {
-                element: [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
-            };
-            let second = Matrix {
-                element: [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
-            };
-            let result = Matrix::matrix_multiplication(first, second);
-            debug!("{:?}",result);
+            info!("Enter the number of rows for first matrix\n");
+            let row_1: i32 = read!();
+            info!("Enter the number of columns for first matrix\n");
+            let column_1: i32 = read!();
+            let mut first_matrix: Vec<Vec<i32>> = Vec::new();
+            info!("Enter the entries rowwise");
+            for _index_1 in 0..row_1 {
+                let mut vec: Vec<i32> = Vec::new();
+                for _index_2 in 0..column_1 {
+                    vec.push(read!())
+                }
+                first_matrix.push(vec);
+            }
+            info!("Enter the number of rows for second matrix\n");
+            let row_2: i32 = read!();
+            info!("Enter the number of columns for second matrix\n");
+            let column_2: i32 = read!();
+            let mut second_matrix: Vec<Vec<i32>> = Vec::new();
+            info!("Enter the entries rowwise");
+            for _index_1 in 0..row_2 {
+                let mut vec: Vec<i32> = Vec::new();
+                for _index_2 in 0..column_2 {
+                    vec.push(read!())
+                }
+                second_matrix.push(vec);
+            }
+            debug!("{:?}", matrix_multiplication(&first_matrix, &second_matrix));
         }
         if choice == -1 {
             break;
